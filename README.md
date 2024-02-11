@@ -1,1 +1,3 @@
-# A-Python-Library-For-Mathemtical-Operations
+# VAMPyR coven
+
+A collection of VAMPyR notebooks
