@@ -1,3 +1,3 @@
 # VAMPyR coven
 
-A collection of VAMPyR notebooks
+A **C**ollection **O**f **V**AMPyR **E**ducational **N**otebooks
