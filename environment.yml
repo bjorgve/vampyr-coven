@@ -1,4 +1,4 @@
-name: mw-coven
+name: vampyr-coven
 channels:
   - conda-forge
 dependencies:
