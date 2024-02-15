@@ -11,13 +11,5 @@ dependencies:
   - matplotlib
   - jupyterlab
   - jupytext
-  - altair
-  - plotly
-  - pandas
-  - python=3.8
-  - openbabel
-  - pip
-  - markdown-it-py
-  - linkify-it-py
-  - mdit-py-plugins
+  - python=3.10
   - py3dmol
