@@ -32,24 +32,36 @@ extensions = [
     # githubpages just adds a .nojekyll file
     "sphinx.ext.githubpages",
     "sphinx_lesson",
-    # 'sphinx.ext.intersphinx',
+    "sphinx.ext.duration",
     "sphinxcontrib.bibtex",
-    "sphinx.ext.todo",
-    # "sphinx_thebe",
+    "sphinx_thebe",
+    "myst_nb",
 ]
 # configure myst_nb
 source_suffix = {".rst": "restructuredtext", ".ipynb": "myst-nb", ".myst": "myst-nb"}
 # configure sphinxcontrib.bibtex
 bibtex_bibfiles = ["bibliography.bib"]
+
 # Settings for myst_nb:
-# https://myst-nb.readthedocs.io/en/latest/use/execute.html#triggering-notebook-execution
-jupyter_execute_notebooks = "off"  # no notebook execution
-# jupyter_execute_notebooks = "auto"   # *only* execute if at least one output is missing.
-# jupyter_execute_notebooks = "force"  # *always* execute notebooks
-# jupyter_execute_notebooks = "cache"  # *cache* execution outputs
+# https://myst-nb.readthedocs.io/en/latest/computation/execute.html
+# *only* execute if at least one output is missing.
+nb_execution_mode = "off"
+nb_execution_show_tb = True
+
+# settings for myst_parser
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "html_image",
+]
+myst_url_schemes = ("http", "https", "mailto")
+
+autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
-# templates_path = ['_templates']
+templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -61,8 +73,6 @@ exclude_patterns = [
     ".DS_Store",
     "jupyter_execute",
     "*venv*",
-    "notebooks/solutions/*.ipynb",
-    "notebooks/visualization_*.ipynb"
 ]
 
 # -- Options for HTML output -------------------------------------------------
@@ -83,47 +93,13 @@ html_theme_options = {
     "use_repository_button": True,
     "use_issues_button": True,
     "use_edit_page_button": True,
-    "repository_branch": "master",
+    "repository_branch": f"{github_version}",
     "path_to_docs": "content",
     "use_download_button": True,
     "home_page_in_toc": True,
     "launch_buttons": {
         "binderhub_url": "https://mybinder.org",
+        "thebe": True,
         "notebook_interface": "jupyterlab",
     },
 }
-html_sidebars = {
-    "**": [ "sidebar-logo.html", "sbt-sidebar-nav.html", "sbt-sidebar-footer.html"]
-}
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static", "inputs"]
-# html_css_files = ["overrides.css"]
-# HTML context:
-from os.path import basename, dirname, realpath
-
-html_context = {
-    "display_github": True,
-    "github_user": github_user,
-    # Auto-detect directory name.  This can break, but
-    # useful as a default.
-    "github_repo": github_repo_name or basename(dirname(realpath(__file__))),
-    "github_version": github_version,
-    "conf_py_path": conf_py_path,
-}
-# Intersphinx mapping.  For example, with this you can use
-# :py:mod:`multiprocessing` to link straight to the Python docs of that module.
-# List all available references:
-#   python -msphinx.ext.intersphinx https://docs.python.org/3/objects.inv
-# intersphinx_mapping = {
-#    #'python': ('https://docs.python.org/3', None),
-#    #'sphinx': ('https://www.sphinx-doc.org/', None),
-#    }
-
-# the epilog
-rst_epilog = f"""
-.. role:: red
-.. role:: blue
-.. _MRChemSoft: https://github.com/MRChemSoft
-"""
